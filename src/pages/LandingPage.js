@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
+import Header from 'parts/Header';
+
 class LandingPage extends Component {
     render() {
+
         return (
-            <div>
-                
-            </div>
+            <>
+                <Header {...this.props}/>
+            </>
         );
     }
 }
