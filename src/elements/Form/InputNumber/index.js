@@ -1,89 +1,86 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import propTypes from "prop-types";
-
-import { DateRange } from "react-date-range";
-
 import "./index.scss";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
 
-import formatDate from "utils/formatDate";
-import iconCalendar from "assets/images/icons/icon-calendar.svg";
+export default function Number(props) {
+    const { value, placeholder, name, min, max, prefix, suffix } = props;
 
-export default function Date(props) {
-    const { value, placeholder, name } = props;
-    const [isShowed, setIsShowed] = useState(false);
+    const [InputValue, setInputValue] = useState(`${prefix}${value}${suffix}`);
 
-    const datePickerChange = (value) => {
-        const target = {
-            target: {
-                value: value.selection,
-                name: name,
-            },
-        };
-        props.onChange(target);
-    };
+    const onChange = (e) => {
+        let value = String(e.target.value);
+        if (prefix) value = value.replace(prefix);
+        if (suffix) value = value.replace(suffix);
 
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
+        const patternNumeric = new RegExp("[0-9]*");
+        const isNumeric = patternNumeric.test(value);
 
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    });
-
-    const refDate = useRef(null);
-    const handleClickOutside = (event) => {
-        if (refDate && !refDate.current.contains(event.target)) {
-            setIsShowed(false);
+        if (isNumeric && +value <= max && +value >= min) {
+            props.onChange({
+                target: {
+                    name: name,
+                    value: +value,
+                },
+            });
+            setInputValue(`${prefix}${value}${suffix}`);
         }
     };
 
-    const check = (focus) => {
-        focus.indexOf(1) < 0 && setIsShowed(false);
+    const minus = () => {
+        value > min &&
+            onChange({
+                target: {
+                    name: name,
+                    value: +value - 1,
+                },
+            });
     };
-
-    const displayDate = `${value.startDate ? formatDate(value.startDate) : ""}${value.endDate ? " - " + formatDate(value.endDate) : ""
-        }`;
-
+    const plus = () => {
+        value < max &&
+            onChange({
+                target: {
+                    name: name,
+                    value: +value + 1,
+                },
+            });
+    };
     return (
-        <div
-            ref={refDate}
-            className={["input-date mb-3", props.outerClassName].join(" ")}
-        >
+        <div className={["input-number mb-3", props.outerClassName].join(" ")}>
             <div className="input-group">
-                <div className="input-group-prepend bg-gray-900">
-                    <span className="input-group-text">
-                        <img src={iconCalendar} alt="icon calendar" />
+                <div className="input-group-prepend">
+                    <span className="input-group-text minus" onClick={minus}>
+                        -
                     </span>
                 </div>
                 <input
-                    readOnly
-                    type="text"
+                    min={min}
+                    max={max}
+                    name={name}
+                    pattern="[0-9]*"
                     className="form-control"
-                    value={displayDate}
-                    placeholder={placeholder}
-                    onClick={() => setIsShowed(!isShowed)}
+                    placeholder={placeholder ? placeholder : "0"}
+                    value={String(InputValue)}
+                    onChange={onChange}
                 />
-
-                {isShowed && (
-                    <div className="date-range-wrapper">
-                        <DateRange
-                            editableDateInputs={true}
-                            onChange={datePickerChange}
-                            moveRangeOnFirstSelection={false}
-                            onRangeFocusChange={check}
-                            ranges={[value]}
-                        />
-                    </div>
-                )}
+                <div className="input-group-append">
+                    <span className="input-group-text plus" onClick={plus}>
+                        +
+                    </span>
+                </div>
             </div>
         </div>
     );
 }
 
-Date.propTypes = {
-    value: propTypes.object,
+Number.defaultProps = {
+    min: 1,
+    max: 1,
+    prefix: "",
+    suffix: "",
+};
+
+Number.propTypes = {
+    value: propTypes.oneOfType([propTypes.string, propTypes.number]),
     onChange: propTypes.func,
     placeholder: propTypes.string,
     outerClassName: propTypes.string,
