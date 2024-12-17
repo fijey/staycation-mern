@@ -23,11 +23,12 @@ export default function Star({ className, value, height, width, spacing }) {
 			></div>
 		);
 	}
-	if (decimals > 0 && value <= 5)
+
+	if (decimals > 0 && value <= 5) {
 		star.push(
 			<div
 				className="star"
-				key={`starWithDecimal`}
+				key={`starwithdecimals`}
 				style={{
 					left: leftPos,
 					height: height,
@@ -35,6 +36,7 @@ export default function Star({ className, value, height, width, spacing }) {
 				}}
 			></div>
 		);
+	}
 
 	const starPlaceholder = [];
 	for (let index = 0; index < 5; index++) {
@@ -55,7 +57,7 @@ export default function Star({ className, value, height, width, spacing }) {
 	return (
 		<>
 			<div
-				className={["stars", className].join(" ")}
+				className={["stars", className].join("")}
 				style={{ height: height }}
 			>
 				{starPlaceholder}
