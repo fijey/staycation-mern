@@ -5,6 +5,9 @@ import itemDetails from 'json/itemDetails.json'
 import FeaturedImage from 'parts/FeaturedImage';
 import PageDetailDescription from 'parts/PageDetailDescription';
 import { Fade } from 'react-reveal';
+import BookingForm from 'parts/BookingForm';
+import Categories from 'parts/Categories';
+import Footer from 'parts/Footer';
 
 export default class DetailPage extends Component {
     componentDidMount() {
@@ -31,14 +34,16 @@ export default class DetailPage extends Component {
                     </div>
                     <div className="col-5">
                     <Fade bottom>
-                        {/* <BookingForm
-                        itemDetails={page[match.params.id]}
-                        startBooking={this.props.checkoutBooking}
-                        /> */}
+                        <BookingForm
+                            itemDetails={itemDetails}
+                        />
                     </Fade>
                     </div>
                 </div>
             </section>
+
+            <Categories data={itemDetails.categories}></Categories>
+            <Footer></Footer>
         </>
     )
   }
