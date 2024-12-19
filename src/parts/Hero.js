@@ -1,12 +1,9 @@
 import React from 'react';
-import ImageHero from "assets/images/img-hero.jpeg";
-import ImageHeroFrame from "assets/images/img-hero-frame.jpeg";
-import IcCities from "assets/images/icons/ic_cities.svg";
-import IcTraveler from "assets/images/icons/ic_traveler.svg";
-import IcTreasure from "assets/images/icons/ic_treasure.svg";
+import ImageHero from "assets/images/img-hero.jpg";
+import ImageHeroFrame from "assets/images/img-hero-frame.jpg";
 import Button from 'elements/Button';
 import { numberFormat } from 'utils/helper';
-import { Fade } from 'react-reveal';
+
 
 export default function Hero(props) {
 	const showMostPick = () => {
@@ -17,7 +14,6 @@ export default function Hero(props) {
 	}
 
 	return (
-		<Fade bottom>
 			<section className='container pt-4'>
 				<div className='row align-items-center'>
 					<div className='col-auto pr-5' style={{ width: 530 }}>
@@ -33,19 +29,19 @@ export default function Hero(props) {
 
 						<div className='row mt-5'>
 							<div className='col-auto'>
-								<img style={{ width: 36, height: 36 }} src={IcTraveler} alt={`${props.data.travellers} travelers`} />
+								<img style={{ width: 36, height: 36 }} src={`localhost:3000/images/ic_traveler.svg`} alt={`${props.data.travellers} travelers`} />
 								<h6 className='mt-2'>
 									{numberFormat(props.data.travelers)} <span className='text-gray-500 font-weight-light'>Travelers</span>
 								</h6>
 							</div>
 							<div className='col-auto'>
-								<img style={{ width: 36, height: 36 }} src={IcTreasure} alt={`${props.data.travellers} treasures`} />
+								<img style={{ width: 36, height: 36 }} src={`localhost:3000/images/ic_treasure.svg`}  alt={`${props.data.travellers} treasures`} />
 								<h6 className='mt-2'>
 									{numberFormat(props.data.treasures)} <span className='text-gray-500 font-weight-light'>Treasures</span>
 								</h6>
 							</div>
 							<div className='col-auto'>
-								<img style={{ width: 36, height: 36 }} src={IcCities} alt={`${props.data.travellers} cities`} />
+								<img style={{ width: 36, height: 36 }} src={`localhost:3000/images/ic_cities.svg`}  alt={`${props.data.travellers} cities`} />
 								<h6 className='mt-2'>
 									{numberFormat(props.data.cities)} <span className='text-gray-500 font-weight-light'>Cities</span>
 								</h6>
@@ -62,6 +58,5 @@ export default function Hero(props) {
 					</div>
 				</div>
 			</section>
-		</Fade>
 	);
 }
