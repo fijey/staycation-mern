@@ -11,6 +11,7 @@ export default function MostPicked(props) {
 					props.data.map((item, index) => {
 						return (
 							<div key={index}
+								data-aos="flip-right" data-aos-delay={index * 300} data-aos-once='false'
 								className={`item column-4 ${index === 0 ? 'row-2' : 'row-1'}`}>
 								<div className='card card-featured'>
 									<div className='tag'>

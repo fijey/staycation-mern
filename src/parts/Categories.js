@@ -20,7 +20,8 @@ export default function Categories({ data }) {
                                 :
                                 category.items.map((item, index2) => {
                                     return (
-                                            <div className='item column-3 row-1' key={`category-${index1}-item${index2}`}>
+                                            <div className='item column-3 row-1' key={`category-${index1}-item${index2}`}
+                                            data-aos="fade" data-aos-delay={index2 * 400} data-aos-once='false'>
                                                 <div className='card'>
                                                     {
                                                         item.isPopular &&

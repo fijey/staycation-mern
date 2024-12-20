@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
 
 export default function FeaturedImage({ data }) {
+  useEffect(() => {
+    AOS.init();
+  }, [])
+
   console.log("isi data featured image", data)
   return (
     <section className="container">
@@ -12,6 +17,7 @@ export default function FeaturedImage({ data }) {
               className={`item ${index > 0 ? "column-5" : "column-7"} ${
                 index > 0 ? "row-1" : "row-2"
               }`}
+              data-aos="fade" data-aos-delay={index * 500}
             >
               <div className="card h-100">
                 <figure className="img-wrapper">
