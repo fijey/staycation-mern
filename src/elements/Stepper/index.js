@@ -3,13 +3,13 @@ import propTypes from 'prop-types'
 export default function Stepper(props) {
 
   const {steps, initialStep} = props;
-  const stepKeys = Object.keys[steps]; 
+  const stepKeys = Object.keys(steps); 
 
   const [currenStep, setCurrentStep] = useState(
     stepKeys.indexOf(initialStep) > -1 ? initialStep : stepKeys[0]
   );
 
-  const totalStep = Object.keys[steps].length;
+  const totalStep = Object.keys(steps).length;
   const indexStep = stepKeys.indexOf(currenStep);
 
   function prevStep() {
@@ -17,15 +17,15 @@ export default function Stepper(props) {
   }
 
   function nextStep() {
-    if(+indexStep < totalStep) setCurrentStep(stepKeys[indexStep+1]);
+    if(+indexStep < totalStep - 1) setCurrentStep(stepKeys[indexStep+1]);
   }
 
   return (
-    <>props.children(prevStep, nextStep, currenStep, steps)</>
+    <>{props.children(prevStep, nextStep, currenStep, steps)}</>
   )
 }
 
 Stepper.propTypes = {
-    data: propTypes.object.isRequired,
+    steps: propTypes.object.isRequired,
     initialStep: propTypes.string
 }

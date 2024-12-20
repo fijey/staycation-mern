@@ -6,10 +6,10 @@ import logoBca from "assets/images/logo-bca.jpg";
 import logoMandiri from "assets/images/logo-mandiri.jpg";
 
 export default function Payment(props) {
-  const { data, ItemDetails, checkout } = props;
+  const { data, itemDetails, checkout } = props;
 
   const tax = 10;
-  const subTotal = ItemDetails.price * checkout.duration;
+  const subTotal = itemDetails.price * checkout.duration;
   const grandTotal = (subTotal * tax) / 100 + subTotal;
 
   return (
