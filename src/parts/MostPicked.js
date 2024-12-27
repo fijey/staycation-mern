@@ -3,12 +3,14 @@ import Button from 'elements/Button';
 
 
 export default function MostPicked(props) {
+	const {data} = props;
+	console.log('propsmost', data)
 	return (
 		<section className='container' ref={props.refMostPicked}>
 			<h4 className='mb-3'> Most Picked </h4>
 			<div className='container-grid'>
 				{
-					props.data.map((item, index) => {
+					data.map((item, index) => {
 						return (
 							<div key={index}
 								data-aos="flip-right" data-aos-delay={index * 300} data-aos-once='false'
@@ -16,18 +18,18 @@ export default function MostPicked(props) {
 								<div className='card card-featured'>
 									<div className='tag'>
 										${item.price}
-										<span className='font-weight-light'>Per ${item.unit}</span>
+										<span className='font-weight-light'>Per {item.unit}</span>
 									</div>
 									<figure className='img-wrapper'>
 										<img
-											src={item.imageUrl}
-											alt={item.name}
+											src={`${process.env.REACT_APP_HOST}${item.imageId[0].imageUrl}`}
+											alt={item.title}
 											className='img-cover'
 										/>
 									</figure>
 									<div className='meta-wrapper'>
 										<Button type='link' href={`/detail/${item._id}`} className='streched-link d-block text-white'>
-											<h4>{item.name}</h4>
+											<h4>{item.title}</h4>
 										</Button>
 										<span>
 											{item.city} {item.country}

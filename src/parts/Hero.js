@@ -7,6 +7,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 export default function Hero(props) {
+	const { data } = props;
 	useEffect(() => {
 		AOS.init();
 	}, []);
@@ -36,21 +37,21 @@ export default function Hero(props) {
 
 						<div className='row mt-5'>
 							<div className='col-auto' data-aos="flip-up" data-aos-delay="200">
-								<img style={{ width: 36, height: 36 }} src={`/images/icon-traveler.svg`} alt={`${props.data.travellers} travelers`} />
+								<img style={{ width: 36, height: 36 }} src={`/images/icon-traveler.svg`} alt={`${data.travellers} travelers`} />
 								<h6 className='mt-2'>
-									{numberFormat(props.data.travelers)} <span className='text-gray-500 font-weight-light'>Travelers</span>
+									{numberFormat(data.travelers)} <span className='text-gray-500 font-weight-light'>Travelers</span>
 								</h6>
 							</div>
 							<div className='col-auto' data-aos="flip-right" data-aos-delay="400">
-								<img style={{ width: 36, height: 36 }} src={`/images/icon-treasure.svg`}  alt={`${props.data.travellers} treasures`} />
+								<img style={{ width: 36, height: 36 }} src={`/images/icon-treasure.svg`}  alt={`${data.travellers} treasures`} />
 								<h6 className='mt-2'>
-									{numberFormat(props.data.treasures)} <span className='text-gray-500 font-weight-light'>Treasures</span>
+									{numberFormat(data.treasures)} <span className='text-gray-500 font-weight-light'>Treasures</span>
 								</h6>
 							</div>
 							<div className='col-auto' data-aos="flip-left" data-aos-delay="600">
-								<img style={{ width: 36, height: 36 }} src={`/images/icon-cities.svg`}  alt={`${props.data.travellers} cities`} />
+								<img style={{ width: 36, height: 36 }} src={`/images/icon-cities.svg`}  alt={`${data.travellers} cities`} />
 								<h6 className='mt-2'>
-									{numberFormat(props.data.cities)} <span className='text-gray-500 font-weight-light'>Cities</span>
+									{numberFormat(data.cities)} <span className='text-gray-500 font-weight-light'>Cities</span>
 								</h6>
 							</div>
 						</div>

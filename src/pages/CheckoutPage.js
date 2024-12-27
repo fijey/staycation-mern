@@ -10,8 +10,9 @@ import Meta from 'elements/Stepper/Meta';
 import MainContent from 'elements/Stepper/MainContent';
 import Controller from 'elements/Stepper/Controller';
 import Button from 'elements/Button';
+import { connect } from 'react-redux';
 
-export default class CheckoutPage extends Component {
+class CheckoutPage extends Component {
   state = {
     data: {
       firstName: "",
@@ -38,9 +39,21 @@ export default class CheckoutPage extends Component {
 
   render() {
     const { data } = this.state;
-	const checkout = {
-		duration: 3
-	  }
+	  const { checkout } = this.props;
+
+    if(!checkout) return <div className='container'>
+          <div className='row align-items-center justify-content-center text-center' style={{height: "100vh"}}>
+            <div className='col-4'>
+              Pilih kamar dulu
+              <div>
+                <Button className='btn mt-5' type='link' isLight href={`/`}>
+                  Back to Home
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
     const steps = {
       bookingInformation: {
         title: "Booking Information",
@@ -142,3 +155,9 @@ export default class CheckoutPage extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  checkout: state.checkout
+})
+
+export default connect(mapStateToProps)(CheckoutPage)

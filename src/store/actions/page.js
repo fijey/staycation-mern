@@ -3,6 +3,7 @@ import axios from "configs/axios";
 
 export const fetchPage = (url, page) => (dispatch) => {
   return axios.get(url).then((response) => {
+    console.log('ini urlnya', url);
     dispatch({
       type: FETCH_PAGE,
       payload: {
