@@ -4,6 +4,7 @@ import './assets/scss/style.scss';
 import LandingPage from "pages/LandingPage";
 import DetailPage from "pages/DetailPage";
 import CheckoutPage from "pages/CheckoutPage";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <div className="App">
@@ -12,6 +13,8 @@ function App() {
         <Route exact path="/detail/:id" component={DetailPage} />
         <Route exact path="/checkout" component={CheckoutPage} />
       </Switch>
+
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

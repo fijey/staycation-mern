@@ -9,7 +9,7 @@ export const checkoutBooking = (payload) => (dispatch) => {
 };
 
 export const submitBooking = (payload) => () => {
-  return axios.post(`/booking-page`, payload, {
+  return axios.post(`/booking`, payload, {
     headers: { contentType: "multipart/form-data" },
   });
 };
