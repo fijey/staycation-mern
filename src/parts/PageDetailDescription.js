@@ -3,15 +3,15 @@ import ReactHtmlParser from "html-react-parser";
 
 
 export default function PageDetailDescription({ data }) {
-    console.log('features', data);
+  const features = data.featureId;
   return (
     <main>
       <h4>About the place</h4>
       {ReactHtmlParser(data.description)}
       <div className="row" style={{ marginTop: 30 }}>
-        {data.features.length === 0
+        {features.length === 0
           ? "Tidak Ada Feature"
-          : data.features.map((feature, index) => {
+          : features.map((feature, index) => {
               return (
                 <div
                   key={`feature-${index}`}

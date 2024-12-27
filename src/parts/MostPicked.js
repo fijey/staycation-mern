@@ -4,7 +4,6 @@ import Button from 'elements/Button';
 
 export default function MostPicked(props) {
 	const {data} = props;
-	console.log('propsmost', data)
 	return (
 		<section className='container' ref={props.refMostPicked}>
 			<h4 className='mb-3'> Most Picked </h4>

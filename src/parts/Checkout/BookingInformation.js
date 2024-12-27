@@ -4,7 +4,7 @@ import InputText from "elements/Form/inputText";
 
 export default function BookingInformation(props) {
   const { data, itemDetails, checkout } = props;
-  console.log(itemDetails);
+
   return (
       <div className="container" style={{ marginBottom: 30 }}>
         <div className="row justify-content-center align-items-center">
@@ -13,7 +13,7 @@ export default function BookingInformation(props) {
                 <figure className="img-wrapper" style={{ height: 270 }}>
                   <img
                     className="img-cover"
-                    src={`${process.env.REACT_APP_HOST}/${itemDetails.imageUrls[0].url}`}
+                    src={`${process.env.REACT_APP_HOST}/${itemDetails.imageId[0].imageUrl}`}
                     alt={itemDetails.title}
                   />
                 </figure>

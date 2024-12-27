@@ -39,7 +39,7 @@ class CheckoutPage extends Component {
 
   render() {
     const { data } = this.state;
-	  const { checkout } = this.props;
+	  const { checkout, page } = this.props;
 
     if(!checkout) return <div className='container'>
           <div className='row align-items-center justify-content-center text-center' style={{height: "100vh"}}>
@@ -62,7 +62,7 @@ class CheckoutPage extends Component {
           <BookingInformation
           data={data}
           checkout={checkout}
-          itemDetails={itemDetails}
+          itemDetails={page[this.props.checkout._id].item}
           onChange={this.onChange} />
         )
       },
@@ -72,7 +72,7 @@ class CheckoutPage extends Component {
         content: (
           <Payment
             data={data}
-            itemDetails={itemDetails}
+            itemDetails={page[this.props.checkout._id].item}
             checkout={checkout}
             onChange={this.onChange}  
           />
@@ -157,7 +157,8 @@ class CheckoutPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  checkout: state.checkout
+  checkout: state.checkout,
+  page: state.page
 })
 
 export default connect(mapStateToProps)(CheckoutPage)
